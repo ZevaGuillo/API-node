@@ -18,6 +18,12 @@ export class JwtAdapter {
 
     static verifyToken( token: string ): any {
 
-        return {};
+        return new Promise((resolve) => {
+            jwt.verify(token, JWT_SECRET, (err, decoded) => {
+                if(err) resolve(null);
+
+                resolve(decoded);
+            });
+        });
     }
 }
